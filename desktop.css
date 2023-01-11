@@ -1,0 +1,78 @@
+.content {
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 800px;
+    height: 600px;
+
+    margin-left: 32px;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%);
+}
+
+.section {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+}
+
+.section-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    text-transform: capitalize;
+
+    margin-bottom: 32px;
+}
+
+.section-text {
+    font-size: 2.25rem;
+
+    text-align: justify;
+}
+
+.business-card {
+    position: fixed;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin-right: 32px;
+
+    width: 400px;
+    height: 600px;
+
+    top: 50%;
+    right: 0%;
+    transform: translate(0%, -50%);
+}
+
+.business-card-image img {
+    max-width: 100%;
+}
+
+.business-card-title {
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: 800;
+}
+
+.business-card-subtitle {
+    text-align: center;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.business-card-contact {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
