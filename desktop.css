@@ -56,6 +56,7 @@
 
 .business-card-image img {
     max-width: 100%;
+    background-color: transparent;
 }
 
 .business-card-title {

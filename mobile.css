@@ -21,9 +21,10 @@
 
 .section-title {
     font-size: 3.2rem;
-    font-weight: 800;
+    font-weight: 900;
     text-transform: capitalize;
 
+    margin-top: 64px;
     margin-bottom: 32px;
 }
 
@@ -36,34 +37,50 @@
 .business-card {
     position: fixed;
 
-    display: flex;
-    flex-direction: column;
-
     width: 100%;
-
     bottom: 0%;
-
-    background-color: inherit; 
 }
 
 .business-card-image img {
+    position: absolute;
+    bottom: 0px;
     max-width: 100%;
+    background-color: transparent;
 }
 
 .business-card-title {
-    text-align: center;
+
+    position: absolute;
+
+    right: 32px;
+    bottom: 64px;
+
     font-size: 3.5rem;
     font-weight: 800;
+
+    z-index: 99;
 }
 
 .business-card-subtitle {
-    text-align: center;
-    font-size: 0.8rem;
+    
+    position: absolute;
+
+    right: 32px;
+    bottom: 32px;
+
+    font-size: 1.1rem;
     font-style: italic;
 }
 
 .business-card-contact {
+
+    position: absolute;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: left;
+
+    left: 48px;
+    bottom: 64px;
+
+    transform: translate(100%, -100%) scale(3);
 }
