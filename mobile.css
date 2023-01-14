@@ -20,6 +20,7 @@
 }
 
 .section-title {
+    
     font-size: 3.2rem;
     font-weight: 900;
     text-transform: capitalize;
@@ -42,6 +43,7 @@
 }
 
 .business-card-image img {
+
     position: absolute;
     bottom: 0px;
     max-width: 100%;
@@ -58,6 +60,9 @@
     font-size: 3.5rem;
     font-weight: 800;
 
+    color: whitesmoke;
+    text-shadow: 2px 2px black;
+
     z-index: 99;
 }
 
@@ -70,6 +75,8 @@
 
     font-size: 1.1rem;
     font-style: italic;
+
+    color: whitesmoke;
 }
 
 .business-card-contact {
