@@ -1,158 +1,697 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio and Resume of Tobias Stein, Software Architect and Engineer.">
+    <title>Tobias Stein - Software Architect</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- html2pdf.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-        <title>Tobias Stein - Software Architect, Computer Science Enthusiast and Entrepreneur</title>
+    <!-- Tailwind Config for Dark Mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'media', 
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#2563eb',
+                            dark: '#60a5fa', 
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-        <meta name="description" content="Meet Tobias, an experienced software architect with a wide range of programming languages proficiency. Tobias brings expertise in delivering innovative and efficient solutions to complex challenges, with a track record of successful projects. Trust Tobias to turn your vision into reality."/>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        <meta name=”robots” content=”index, follow”>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        
+        /* Print adjustments */
+        @media print {
+            .no-print { display: none !important; }
+            body { color: black; background: white; }
+            iframe { display: none; } 
+        }
 
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="Tobias Stein - Software Architect, Computer Science Enthusiast and Entrepreneur" />
-        <meta property="og:description" content="Meet Tobias, an experienced software architect with a wide range of programming languages proficiency. Tobias brings expertise in delivering innovative and efficient solutions to complex challenges, with a track record of successful projects. Trust Tobias to turn your vision into reality." />
-        <meta property="og:image" content="https://tobias-stein.work/me.png" />
-        <meta property="og:url" content="https://tobias-stein.work" />
-        <meta property="og:site_name" content="Tobias Stein - Software Architect, Computer Science Enthusiast and Entrepreneur" />
+        /* PDF Helpers */
+        .pdf-page-break { page-break-before: always; }
+        .avoid-break { page-break-inside: avoid; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
 
-        <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-200 dark:border-slate-800 no-print">
+        <!-- Width fixed to match main content (max-w-5xl) -->
+        <div class="max-w-5xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
+            
+            <!-- Left: Name -->
+            <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Tobias Stein</h1>
+            
+            <!-- Center: Nav -->
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#skills" class="hover:text-primary-light dark:hover:text-primary-dark transition">Skills</a>
+                <a href="#projects" class="hover:text-primary-light dark:hover:text-primary-dark transition">Projects</a>
+                <a href="#experience" class="hover:text-primary-light dark:hover:text-primary-dark transition">Experience</a>
+                <a href="#education" class="hover:text-primary-light dark:hover:text-primary-dark transition">Education</a>
+            </nav>
 
-        <link rel="stylesheet" type="text/css" media="only screen and (min-device-width: 481px)" href="desktop.css" />
-        <link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="mobile.css" />
-    </head>
+            <!-- Right: Socials & Download -->
+            <div class="flex items-center gap-4">
+                <!-- LinkedIn -->
+                <a href="https://linkedin.com/in/tobias-stein" target="_blank" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition" title="LinkedIn">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <!-- GitHub -->
+                <a href="https://github.com/tobias-stein" target="_blank" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition" title="GitHub">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <!-- Blog -->
+                <a href="https://tsprojectsblog.wordpress.com/" target="_blank" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition" title="Blog">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                </a>
 
-    <body>
+                <div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
 
-        <div class="parallax">
-            <div class="content">
-                <div class="section">
-                    <h1 class="section-title">
-                        Experienced Software Architect: Efficient Solutions for Complex Challenges
-                    </h1>
-                    <div class="section-text">
-                        Meet Tobias, an experienced software architect with a wide range of programming languages proficiency. Tobias brings expertise in delivering innovative and efficient solutions to complex challenges, with a track record of successful projects. Trust Tobias to turn your vision into reality.
-                    </div>
-                </div>
+                <button onclick="generatePDF()" class="inline-flex items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Download PDF
+                </button>
             </div>
         </div>
-        
-        <div class="parallax">
-            <div class="content">
-                <div class="section">
-                    <h1 class="section-title">
-                        Expert in agile software development
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-12 space-y-20">
+
+        <!-- Hero Section -->
+        <section id="hero" class="pt-10 mb-12">
+            <div class="flex flex-col gap-10 items-start w-full">
+                <div class="flex-1 space-y-6 w-full">
+                    
+                    <!-- Clickable Personality Badge -->
+                    <a href="https://www.16personalities.com/intj-personality" target="_blank" rel="noopener noreferrer" class="inline-block px-3 py-1 text-xs font-semibold tracking-wide text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800 transition cursor-pointer">
+                        INTJ-A • Architect
+                    </a>
+
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white hero-title">
+                        Software Architect <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+                            & Engineer
+                        </span>
                     </h1>
-                    <div class="section-text">
-                        Tobias is experienced in agile software development. Skilled in managing and collaborating with cross-functional teams to deliver software on-time and within budget. Tobias also has the ability to mentor and guide team members to become more effective practitioners. He can help implement or optimize your software life-cycle process.
+                    
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed w-full">
+                        I am an experienced software architect with a wide range of programming language proficiency. I bring expertise in delivering innovative and efficient solutions to complex challenges, with a track record of successful projects.
+                    </p>
+
+                    <!-- About Card -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 w-full about-card">
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3">
+                                <span class="text-blue-500">★</span>
+                                <span>Can-do! attitude</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-blue-500">★</span>
+                                <span>Profound experience in software engineering and architectures</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-blue-500">★</span>
+                                <span>Well-experienced in agile methodologies: time-management, planning, retrospectives</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-       </div>
+        </section>
 
-        <div class="parallax">
-            <div class="content">
-                <div class="section">
-                    <h1 class="section-title">
-                        Can-do Attitude: A Dependable and Driven Professional
-                    </h1>
-                    <div class="section-text">
-                       Tobias is a highly motivated professional with a can-do attitude. He is dedicated, energetic and an infectious team player, known for finding solutions, taking on new challenges and improving and honing his skills. Tobias will work tirelessly to achieve your goals.
-                    </div>
+        <!-- Spacer for Visual Separation -->
+        <hr class="border-slate-200 dark:border-slate-800 mb-12">
+
+        <!-- Skills & Languages -->
+        <section id="skills" class="grid md:grid-cols-2 gap-10">
+            <div>
+                <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                    </svg>
+                    Skills
+                </h2>
+                <div class="flex flex-wrap gap-2 skills-list">
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Agile Methodologies</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Full-Stack Development</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Spring Boot</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Vaadin</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Docker</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Kubernetes</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Terraform</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Jenkins</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Grafana</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">InfluxDB</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">REST APIs</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">gRPC</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">CI/CD</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Test Automation</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">WebSocket</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">ElasticSearch</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Git</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Unity 3D</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Unreal Engine</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Node.JS</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Vue.JS</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Nuxt.JS</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">SQL</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">NoSQL</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">AWS</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Azure</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Django</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">Visual Studio</span>
+                    <span class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-md text-sm">WPF</span>
                 </div>
-            </div>
-       </div>
-
-        <div class="business-card">
-            <div class="business-card-image">
-                <img src="me.png" alt="tobia stein software architect" />
             </div>
 
             <div>
-                <div class="business-card-title">
-                    Tobias Stein
-                </div>
-                <div class="business-card-subtitle">
-                    Software Architect, Computer Science Enthusiast and Entrepreneur
+                <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                    Languages
+                </h2>
+                <div class="flex flex-wrap gap-2 languages-list">
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">C++</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">C#</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">Python</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">JavaScript</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">TypeScript</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">Java</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">Rust</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">Lua</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">Haskell</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">Lisp</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">Assembly</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">Groovy</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">Bash</span>
+                    <span class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded-md text-sm">Windows Batch</span>
                 </div>
             </div>
-            <div class="business-card-contact">
-                <a href="mailto:2a83dngw@tobiasstein.anonaddy.com" class="fa fa-envelope"></a>
-                <a href="https://www.linkedin.com/in/tobias-stein/" class="fa fa-linkedin"></a>
-                <a href="https://github.com/tobias-stein" class="fa fa-github"></a>
-                <a href="https://tsprojectsblog.wordpress.com/" class="fa fa-wordpress"></a>
+        </section>
+
+        <!-- Projects Section (Visible on web, ignored in PDF) -->
+        <section id="projects">
+            <h2 class="text-2xl font-bold mb-8 text-slate-900 dark:text-white flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-pink-500 dark:text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                </svg>
+                Projects
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col">
+                    <div class="aspect-video w-full bg-slate-900 relative">
+                        <iframe class="w-full h-full absolute top-0 left-0" src="https://www.youtube.com/embed/idYdpPCUsyg" title="Entity Component System" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Entity Component System</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 flex-1">
+                            An implementation of the ECS pattern, demonstrated via "The BountyHunter Game".
+                        </p>
+                        <div class="flex gap-3 mt-auto">
+                            <a href="https://github.com/tobias-stein/EntityComponentSystem" target="_blank" class="text-xs font-semibold px-3 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg text-slate-700 dark:text-slate-200 transition">GitHub</a>
+                            <a href="https://tsprojectsblog.wordpress.com/2017/11/16/the-bountyhunter-game/" target="_blank" class="text-xs font-semibold px-3 py-2 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-lg transition">Blog Post</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col">
+                    <div class="aspect-video w-full bg-slate-900 relative">
+                        <iframe class="w-full h-full absolute top-0 left-0" src="https://www.youtube.com/embed/mE0ZQu1p9aA" title="StatsTracer Plugin" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">StatsTracer Plugin</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 flex-1">
+                            A performance profiling tool and plugin implementation for tracking application statistics.
+                        </p>
+                        <div class="flex gap-3 mt-auto">
+                            <a href="https://github.com/tobias-stein/statstracer-plugin" target="_blank" class="text-xs font-semibold px-3 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg text-slate-700 dark:text-slate-200 transition">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col">
+                    <div class="aspect-video w-full bg-slate-900 relative">
+                        <iframe class="w-full h-full absolute top-0 left-0" src="https://www.youtube.com/embed/bPCLGaouViI" title="Hexafun" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Hexafun</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 flex-1">
+                            Hex grid terrain generation system featuring colored territory borders and procedural algorithms.
+                        </p>
+                        <div class="flex gap-3 mt-auto">
+                            <a href="https://github.com/tobias-stein/hexafun" target="_blank" class="text-xs font-semibold px-3 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg text-slate-700 dark:text-slate-200 transition">GitHub</a>
+                            <a href="https://tsprojectsblog.wordpress.com/2023/01/03/hex-grid-terrain-with-colored-territory-borders/" target="_blank" class="text-xs font-semibold px-3 py-2 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-lg transition">Blog Post</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </body>
+        </section>
 
-    <style>
-        
-        body {
-            margin: 0px;
-            padding: 0px;
+        <!-- Education & Certs -->
+        <section id="education" class="grid md:grid-cols-2 gap-10">
+            <div>
+                <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                       <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                       <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    </svg>
+                    Education
+                </h2>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">Otto-von-Guericke University Magdeburg</h3>
+                    <p class="text-slate-600 dark:text-slate-400">Master of Science (M.Sc.), Computer Science</p>
+                    <p class="text-sm text-slate-500 mt-2">2008 - 2014</p>
+                </div>
+            </div>
 
-            font-family: 'Inter';
-            font-size: 22px;
+            <div>
+                <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-orange-500 dark:text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                       <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Certifications
+                </h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                        <h4 class="font-bold text-slate-900 dark:text-white">iSAQB® CPSA-F</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Certified Professional for Software Architecture – Foundation Level</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                        <h4 class="font-bold text-slate-900 dark:text-white">iSAQB® SOFT</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Soft Skills for Software Architects</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            color: black;
-            background-color: whitesmoke;
-        }
-
-        @media (prefers-color-scheme: dark) {
-       
-            body {
-
-                color: whitesmoke;
-                background-color: rgb(31, 31, 31);
-                text-shadow: 2px 2px black;
-            }
-        }
-
-        .parallax {
-            /* The image used */
-            /* background-image: url('img_parallax.jpg'); */
-
-            /* Full height */
-            height: 100%; 
-        
-            /* Create the parallax scrolling effect */
-            background-attachment: scroll;
+        <!-- Experience -->
+        <section id="experience">
+            <h2 class="text-2xl font-bold mb-8 text-slate-900 dark:text-white flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Work Experience
+            </h2>
             
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+            <div class="space-y-12 border-l-2 border-slate-200 dark:border-slate-800 ml-3 pl-8 relative" id="experience-list">
 
+                <!-- Job 1 -->
+                <div class="relative avoid-break">
+                    <span class="absolute -left-[43px] top-1.5 h-5 w-5 rounded-full bg-blue-600 border-4 border-white dark:border-slate-900"></span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">MRstudios - Industrial VR/AR</h3>
+                    <p class="text-blue-600 dark:text-blue-400 font-medium">Software Architect - Senior Developer - DevOps</p>
+                    <p class="text-sm text-slate-500 mb-3">Jan 2021 - Oct 2025</p>
+                    <p class="text-slate-600 dark:text-slate-300 mb-4">
+                        Provided tooling and created/maintained CI/CD pipelines. Designed internal Unity packages for common features. Developed "MRLauncher", an MVP software distribution platform.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs opacity-80">
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">C++ / C#</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Unity3D</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Python</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Django</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">PostgreSQL</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">WebRTC</span>
+                    </div>
+                </div>
 
-        .fa {
-            margin: 8px;
-            padding: 10px;
-            font-size: 30px;
-            text-align: center;
-            text-decoration: none;
-        }
+                <!-- Job 2 -->
+                <div class="relative avoid-break">
+                    <span class="absolute -left-[43px] top-1.5 h-5 w-5 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-900"></span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Systemair</h3>
+                    <p class="text-slate-700 dark:text-slate-300 font-medium">Software & Tooling Engineer</p>
+                    <p class="text-sm text-slate-500 mb-3">Jan 2024 - Dec 2025</p>
+                    <p class="text-slate-600 dark:text-slate-300 mb-4">
+                        Managed the development lifecycle of a key internal tool for handling extensive product pricing data and generating sales quotations.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs opacity-80">
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Visual Studio</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">C#</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">WPF</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Excel</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Liquid Template Language</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Git</span>
+                    </div>
+                </div>
 
-        .fa:hover {
-            opacity: 0.7;
-        }
+                <!-- Job 3 -->
+                <div class="relative avoid-break">
+                    <span class="absolute -left-[43px] top-1.5 h-5 w-5 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-900"></span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">2scale GmbH</h3>
+                    <p class="text-slate-700 dark:text-slate-300 font-medium">Software Architect - Senior Developer - DevOps</p>
+                    <p class="text-sm text-slate-500 mb-3">Nov 2023 - Jun 2025</p>
+                    <p class="text-slate-600 dark:text-slate-300 mb-4">
+                        Responsible for the further development and maintenance of a Java Spring Boot application with Vaadin frontend. Core tasks included UI development, extension of AWS infrastructure (Terraform CDK), PostgreSQL data model adjustments, and creation of data interfaces.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs opacity-80">
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Java</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Spring Boot</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Vaadin Flow</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Terraform CDK</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">AWS</span>
+                    </div>
+                </div>
 
-        .fa-envelope {
-            background: #000000;
-            color: white;
-        }
+                <!-- Job 4 -->
+                <div class="relative avoid-break">
+                    <span class="absolute -left-[43px] top-1.5 h-5 w-5 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-900"></span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Systemair</h3>
+                    <p class="text-slate-700 dark:text-slate-300 font-medium">Cloud DevOps & Tooling Engineer</p>
+                    <p class="text-sm text-slate-500 mb-3">Jul 2021 - Oct 2022</p>
+                    <p class="text-slate-600 dark:text-slate-300 mb-4">
+                        Provided expertise and support in implementing a pipeline for importing and transforming large volumes of product data into a new database. Developed user interfaces to display data to editors in a condensed format.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs opacity-80">
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">TypeScript</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Azure</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Vue.JS</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Node.JS</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">ElasticSearch</span>
+                    </div>
+                </div>
 
-        .fa-linkedin {
-            background: #007bb5;
-            color: white;
-        }
+                <!-- Job 5 -->
+                <div class="relative avoid-break">
+                    <span class="absolute -left-[43px] top-1.5 h-5 w-5 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-900"></span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Mytaverse</h3>
+                    <p class="text-slate-700 dark:text-slate-300 font-medium">Software Architect</p>
+                    <p class="text-sm text-slate-500 mb-3">Jan 2022 - Jul 2022</p>
+                    <p class="text-slate-600 dark:text-slate-300 mb-4">
+                        Designed and implemented a proof-of-concept for a robust, scalable, and fast WebRTC solution to bring virtual real-time experience to web browsers. Analyzed current solutions and assisted in recruitment.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs opacity-80">
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">C++</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">TypeScript</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">WebRTC</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">AWS</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Kafka</span>
+                    </div>
+                </div>
 
-        .fa-github {
-            background: #000000;
-            color: white;
-        }
+                 <!-- Job 6 -->
+                 <div class="relative avoid-break">
+                    <span class="absolute -left-[43px] top-1.5 h-5 w-5 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-900"></span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Audi Business Innovation GmbH</h3>
+                    <p class="text-slate-700 dark:text-slate-300 font-medium">Unreal Engine Developer</p>
+                    <p class="text-sm text-slate-500 mb-3">Oct 2018 - Dec 2020</p>
+                    <p class="text-slate-600 dark:text-slate-300 mb-4">
+                        Designed and implemented architecture for the "Automotive Visualization Engine". Responsible for fully automated CI/CD pipelines and played a key role in AWS DevOps.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs opacity-80">
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Unreal Engine 4</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">C++</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">AWS</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Perforce</span>
+                    </div>
+                </div>
 
-        .fa-wordpress {
-            background: #0085be;
-            color: white;
+                <!-- Job 7 -->
+                <div class="relative avoid-break">
+                    <span class="absolute -left-[43px] top-1.5 h-5 w-5 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-900"></span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">innovas GmbH</h3>
+                    <p class="text-slate-700 dark:text-slate-300 font-medium">Software Architect</p>
+                    <p class="text-sm text-slate-500 mb-3">Mar 2017 - Aug 2018</p>
+                    <p class="text-slate-600 dark:text-slate-300 mb-4">
+                        Automated business processes using Camunda. Designed database independent Blob feature and robust UI using MVVM idiom.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs opacity-80">
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Java</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Camunda</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Hibernate</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">SQL</span>
+                    </div>
+                </div>
+
+                <!-- Job 8 -->
+                <div class="relative avoid-break">
+                    <span class="absolute -left-[43px] top-1.5 h-5 w-5 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-900"></span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Daedalic Entertainment GmbH</h3>
+                    <p class="text-slate-700 dark:text-slate-300 font-medium">Programmer</p>
+                    <p class="text-sm text-slate-500 mb-3">Sep 2015 - Dec 2016</p>
+                    <p class="text-slate-600 dark:text-slate-300 mb-4">
+                        Creating gameplay logic, maintaining internal engine source code, creating supportive tools for artists and project resource maintenance, optimizing build pipeline and porting existing PC games to next gen console platforms.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs opacity-80">
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">C++</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">C#</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Unity3D</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Unreal Engine 4</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Xbox One</span>
+                        <span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">PS4</span>
+                    </div>
+                </div>
+
+                <!-- Earlier Roles -->
+                <div class="relative avoid-break">
+                    <span class="absolute -left-[43px] top-1.5 h-5 w-5 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-900"></span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Early Career & Internships</h3>
+                    <p class="text-sm text-slate-500 mb-3">2011 - 2015</p>
+                    <ul class="list-disc list-inside text-slate-600 dark:text-slate-300 text-sm space-y-1">
+                        <li><strong>Work and Travel (Australia):</strong> Jun 2014 - May 2015. Transformative gap year.</li>
+                        <li><strong>German Aerospace Center (DLR):</strong> Scientific Assistant (2013 - 2014). Developed 3D model viewer.</li>
+                        <li><strong>German Aerospace Center (DLR):</strong> Internship (Aug 2011 - Feb 2012). Benchmark suite for physics engines.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-12 mt-12 no-print">
+        <div class="max-w-5xl mx-auto px-6 text-center text-slate-500 text-sm">
+            <p>&copy; <span id="year"></span> Tobias Stein. All rights reserved.</p>
+            <p class="mt-2">Built with Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function generatePDF() {
+            // Container
+            const element = document.createElement('div');
+            element.className = 'bg-white p-8 text-slate-800 font-sans text-xs';
+            element.style.width = '100%';
+
+            // 1. Header
+            const headerHTML = `
+                <div class="border-b pb-4 mb-2"> <!-- Reduced margin-bottom here -->
+                    <h1 class="text-2xl font-bold text-slate-900">Tobias Stein</h1>
+                    <p class="text-slate-600 mt-1">tobias.stein@outlook.com</p>
+                </div>
+            `;
+
+            // Helper to safely clone
+            const safeClone = (id) => {
+                const el = document.getElementById(id);
+                return el ? el.cloneNode(true) : null;
+            };
+
+            // Clone sections
+            const heroClone = safeClone('hero');
+            const skillsClone = safeClone('skills');
+            const educationClone = safeClone('education');
+            const experienceClone = safeClone('experience');
+
+            // HELPER: Clean Nodes
+            const cleanNode = (node) => {
+                if(!node) return;
+                node.querySelectorAll('*').forEach(el => {
+                    // Remove Dark Mode Classes
+                    const classesToRemove = [];
+                    el.classList.forEach(cls => {
+                        if (cls.startsWith('dark:')) classesToRemove.push(cls);
+                    });
+                    classesToRemove.forEach(cls => el.classList.remove(cls));
+                    
+                    if (el.classList.contains('text-white')) el.classList.remove('text-white');
+                    
+                    // Icons: Force Colors into STROKE attribute via style
+                    if (el.tagName === 'svg') {
+                        el.setAttribute('width', '20'); // Smaller icons for PDF
+                        el.setAttribute('height', '20');
+                        el.style.display = 'inline-block';
+                        
+                        // Map specific classes to colors
+                        let color = 'currentColor';
+                        if (el.classList.contains('text-blue-600')) color = '#2563eb';
+                        else if (el.classList.contains('text-purple-600')) color = '#9333ea';
+                        else if (el.classList.contains('text-green-600')) color = '#16a34a';
+                        else if (el.classList.contains('text-orange-500')) color = '#f97316';
+                        
+                        // Apply color to child paths
+                        el.querySelectorAll('path').forEach(path => {
+                            path.style.stroke = color;
+                            path.setAttribute('stroke', color);
+                        });
+                    }
+
+                    // Text Colors
+                    if (el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3') {
+                        el.classList.add('text-slate-900');
+                        el.style.color = '#0f172a';
+                        // Adjust header sizes for PDF
+                        if(el.tagName === 'H1') el.style.fontSize = '2rem';
+                        if(el.tagName === 'H2') el.style.fontSize = '1.25rem';
+                    }
+                    if (el.tagName === 'P' || el.tagName === 'LI' || el.tagName === 'SPAN') {
+                        if (!el.classList.contains('text-blue-600') && !el.classList.contains('text-blue-800')) {
+                             el.classList.add('text-slate-700');
+                             el.style.color = '#334155';
+                        }
+                    }
+
+                    // Fix: Force Job Titles to be Slate/Dark instead of Blue
+                    if (el.classList.contains('text-blue-600')) {
+                        if (el.tagName === 'P' && (el.innerText.includes('Architect') || el.innerText.includes('Developer') || el.innerText.includes('Engineer'))) {
+                            el.classList.remove('text-blue-600', 'dark:text-blue-400');
+                            el.classList.add('text-slate-800');
+                            el.style.color = '#1e293b'; 
+                            el.style.fontWeight = '600';
+                        }
+                    }
+                    
+                    // Ensure About Card retains structure
+                    if (el.classList.contains('about-card')) {
+                        el.classList.add('border', 'border-slate-200', 'shadow-sm', 'bg-slate-50');
+                        el.classList.remove('bg-white'); 
+                    }
+                });
+
+                // Fix Hero Gradient Text
+                const gradText = node.querySelector('.text-transparent');
+                if(gradText) {
+                    gradText.classList.remove('text-transparent', 'bg-clip-text', 'bg-gradient-to-r', 'from-blue-600', 'to-cyan-500');
+                    gradText.style.background = 'none';
+                    gradText.style.color = '#2563eb';
+                    gradText.classList.add('text-blue-600');
+                }
+
+                // Preserve Social Links but clean styles
+                const socials = node.querySelector('.social-links');
+                if(socials) {
+                    socials.querySelectorAll('a').forEach(a => {
+                        a.style.color = '#475569';
+                        a.style.textDecoration = 'none';
+                    });
+                }
+
+                // FIX: Ensure Bullet Points appear in lists, but ignore the About card (which is flex)
+                node.querySelectorAll('ul').forEach(ul => {
+                    const firstLi = ul.querySelector('li');
+                    // If the list items are flex (like the stars), DO NOT add bullets
+                    if (firstLi && !firstLi.classList.contains('flex')) {
+                        ul.classList.remove('list-inside'); // html2canvas sometimes hides inside bullets
+                        ul.style.listStyleType = 'disc';
+                        ul.style.paddingLeft = '20px';
+                        ul.style.marginLeft = '10px';
+                        ul.querySelectorAll('li').forEach(li => {
+                            li.style.display = 'list-item';
+                        });
+                    } else {
+                        // Ensure stars don't get bullets
+                        ul.style.listStyleType = 'none';
+                        ul.style.paddingLeft = '0';
+                        ul.style.marginLeft = '0';
+                    }
+                });
+            };
+
+            // Process Clones
+            if(heroClone) cleanNode(heroClone);
+            if(skillsClone) cleanNode(skillsClone);
+            if(educationClone) cleanNode(educationClone);
+            if(experienceClone) cleanNode(experienceClone);
+
+            // --- PAGE 1 Construction ---
+            element.innerHTML += headerHTML;
+            
+            if(heroClone) {
+                heroClone.classList.remove('pt-10'); 
+                heroClone.classList.remove('mb-12'); 
+                heroClone.querySelectorAll('.gap-10').forEach(el => { el.classList.remove('gap-10'); el.classList.add('gap-4'); });
+                element.appendChild(heroClone);
+            }
+            
+            // Re-added Small Margin Spacer
+            const marginSpacer = document.createElement('div');
+            marginSpacer.style.height = '10px';
+            element.appendChild(marginSpacer.cloneNode());
+
+            const p1Grid = document.createElement('div');
+            p1Grid.className = 'mt-6 space-y-6'; 
+            
+            if(skillsClone) {
+                // Shrink badges
+                skillsClone.querySelectorAll('span').forEach(badge => {
+                    badge.className = 'px-2 py-0.5 bg-slate-200 rounded text-[9px] border border-slate-300 inline-block mb-1 mr-1';
+                    badge.style.backgroundColor = '#e2e8f0';
+                });
+                skillsClone.classList.remove('gap-10');
+                skillsClone.classList.add('gap-4');
+                p1Grid.appendChild(skillsClone);
+            }
+
+            if(educationClone) {
+                p1Grid.appendChild(educationClone);
+            }
+            element.appendChild(p1Grid);
+
+            // --- PAGE BREAK ---
+            const pageBreak = document.createElement('div');
+            pageBreak.className = 'pdf-page-break';
+            element.appendChild(pageBreak);
+
+            // --- PAGE 2+ Construction ---
+            if(experienceClone) {
+                const expList = experienceClone.querySelector('#experience-list');
+                if(expList) {
+                    expList.classList.remove('border-l-2', 'ml-3', 'pl-8');
+                    expList.classList.add('space-y-6'); 
+                    expList.querySelectorAll('.relative').forEach(job => {
+                        const dot = job.querySelector('span.absolute');
+                        if(dot) dot.remove();
+                    });
+                }
+                element.appendChild(experienceClone);
+            }
+
+            // Generate PDF
+            const opt = {
+                margin:       [10, 10, 10, 10],
+                filename:     'Resume-Tobias-Stein.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true, scrollY: 0 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak:    { mode: ['css', 'legacy'] }
+            };
+
+            html2pdf().set(opt).from(element).save();
         }
-    </style>
+    </script>
+</body>
 </html>
